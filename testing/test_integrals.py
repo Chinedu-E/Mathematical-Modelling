@@ -27,6 +27,13 @@ class TestIntegrals(unittest.TestCase):
         self.assertEqual(result, exp)
         
         
+    def test_simprule3(self):
+        f = lambda x: np.log(x**2 + 3)
+        result = round(Integrals.simprule(4, 0, 4, f)[0], 4)
+        exp = 	7.8066
+        self.assertEqual(result, exp)
+        
+        
     def test_midrule(self):
         f = lambda x: sin(x**2)
         result = round(Integrals.midrule(4, 0, 2, f)[0], 5)

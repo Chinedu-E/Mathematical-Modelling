@@ -85,13 +85,14 @@ class NumericalApproximation:
         y_s = [initial_values[1]]
         k1, k2, k3, k4 = [], [], [], []
         formula = NumericalApproximation.range_kutta_formula
-        for i in range(50):
+        iter_length = int(target/step_size)
+        for i in range(iter_length):
             k: list[float] = formula(func, step_size, x_s[i], y_s[i])
             k1.append(k[0])
             k2.append(k[1])
             k3.append(k[2])
             k4.append(k[3])
-            y = y_s[i] + Fraction(1, 6) * (k[0]+ 2*k[1]+ 2*k[2]+ k[3])
+            y = y_s[i] + (Fraction(1, 6) * (k[0]+ 2*k[1]+ 2*k[2]+ k[3]))
             y_s.append(y)
             next_step = x_s[i] + step_size
             x_s.append(next_step)
@@ -113,6 +114,6 @@ class NumericalApproximation:
 if __name__ == '__main__':
     f = lambda x, y: x+y
     initial_values = (0, 0)
-    table = NumericalApproximation.range_kutta_method(f, initial_values, 0.1, 0.4)
+    table = NumericalApproximation.eulers_method_improved(f, initial_values, 0.1, 0.4)
     print(table)
     

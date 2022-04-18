@@ -15,7 +15,7 @@ class TestMatrixComputations(unittest.TestCase):
         self.assertEqual(result, exp)
         
         
-    def test_gauss_seidel(self):
+    def test_gauss_seidel1(self):
         A = array([[16, 3],
                    [7, -11]])
         b = array([11, 13])
@@ -23,6 +23,16 @@ class TestMatrixComputations(unittest.TestCase):
         result = matrix(A, b).gauss_seidel(x0, 8)
         exp = [0.8122, -0.665]
         self.assertEqual(list(around(result,4)), exp)
+        
+        
+    def test_gauss_seidel2(self):
+        A = array([[0.5, 1],
+                   [-1, 0.25]])
+        b = array([2, -2])
+        x0 = array([0,1])
+        result = matrix(A, b).gauss_seidel(x0, 1)[0]
+        exp = 2
+        self.assertEqual(result, exp)
     
     
     def test_cholesky_decomposition1(self):
